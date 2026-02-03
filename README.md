@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Baring Construction Services Website
+
+Professional construction company website built with Next.js and Tailwind CSS.
+
+## Features
+
+- Lightning-fast performance with Next.js App Router and Server Components
+- Responsive, mobile-first design with Tailwind CSS
+- SEO-optimized with structured data, Open Graph, and sitemap
+- Contact and quote request forms with Zod validation
+- Project portfolio with category filtering and image galleries
+- Email notifications via Resend API
+- Accessibility compliant (WCAG AA)
+- Security hardened with CSP, HSTS, and input sanitization
+
+## Tech Stack
+
+| Category | Technology |
+|----------|------------|
+| Framework | Next.js 16 (App Router) |
+| Styling | Tailwind CSS v4 |
+| Icons | Lucide React |
+| Forms | React Hook Form + Zod |
+| Animation | Framer Motion |
+| Email | Resend |
+| Deployment | Vercel |
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd baring-construction
+
+# Install dependencies
+npm install
+
+# Copy environment variables
+cp .env.example .env.local
+# Fill in the values in .env.local
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Create production build |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npm run format` | Format code with Prettier |
+| `npm run format:check` | Check formatting |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/                # Pages and API routes
+├── components/
+│   ├── ui/             # Reusable UI components (Button, Card, Input, etc.)
+│   ├── layout/         # Navbar, Footer, MobileMenu
+│   ├── sections/       # Homepage sections (Hero, Services, Projects, etc.)
+│   ├── forms/          # Contact and Quote forms
+│   └── project/        # Project cards, filters, gallery
+├── lib/                # Utilities, constants, validations, analytics
+└── data/               # Static data (services, projects, testimonials)
+```
 
-## Deploy on Vercel
+## Environment Variables
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+See `.env.example` for all required variables. Never commit `.env.local` to version control.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Documentation
+
+- `SOFTWARE_SPECIFICATIONS.md` — Full project specification
+- `BEST_PRACTICES.md` — Coding standards and guidelines
+- `UX_DESIGN_BEST_PRACTICES.md` — Design system and UX guidelines
+
+## Deployment
+
+This project is configured for deployment on [Vercel](https://vercel.com). Push to the `main` branch to trigger a production deployment.
+
+## License
+
+Private project. All rights reserved.
