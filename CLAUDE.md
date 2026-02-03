@@ -32,7 +32,7 @@ src/
 │   ├── api/                # API routes (contact, quote)
 │   └── [page]/page.js     # about, services, projects, contact, quote
 ├── components/
-│   ├── ui/                 # Reusable: Button, Card, Input, Badge, Modal, Spinner
+│   ├── ui/                 # Design system primitives (see below)
 │   ├── layout/             # Navbar, Footer, MobileMenu, Container
 │   ├── sections/           # Hero, ServicesGrid, FeaturedProjects, WhyChooseUs, etc.
 │   ├── forms/              # ContactForm, QuoteForm, FileUpload, FormField
@@ -49,6 +49,22 @@ src/
 │   └── testimonials.js     # TESTIMONIALS array
 └── styles/
 ```
+
+## UI Components (Design System)
+
+All in `src/components/ui/`. Import via `@/components/ui/ComponentName`.
+
+| Component | Props | Notes |
+|-----------|-------|-------|
+| **Button** | `variant` (primary/secondary/outline/ghost/white), `size` (sm/md/lg), `href`, `loading`, `disabled`, `fullWidth` | Renders `<Link>` when `href` set. `'use client'` |
+| **Card** | `hover` | Composable: `Card`, `CardHeader`, `CardBody`, `CardFooter` |
+| **Input** | `label`, `id`, `error`, `helpText`, `required`, `ref` | ARIA-linked error/help text |
+| **Textarea** | `label`, `id`, `error`, `helpText`, `required`, `rows`, `ref` | Same pattern as Input |
+| **Select** | `label`, `id`, `options`, `placeholder`, `error`, `helpText`, `required`, `ref` | Custom chevron icon, accepts string[] or {label,value}[] |
+| **Badge** | `variant` (default/blue/gold/green/red), `size` (sm/md) | Pill-shaped |
+| **Modal** | `open`, `onClose`, `title`, `size` (sm/md/lg/xl) | ESC/overlay close, scroll lock. `'use client'` |
+| **Spinner** | `size` (sm/md/lg), `label` | Screen reader accessible |
+| **Container** | `className` | `max-w-7xl`, responsive px. In `layout/` |
 
 ## Brand & Design
 
