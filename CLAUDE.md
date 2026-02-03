@@ -29,8 +29,11 @@ src/
 │   ├── layout.js           # Root layout (fonts, metadata)
 │   ├── globals.css         # Tailwind theme + base styles
 │   ├── page.js             # Homepage
+│   ├── about/page.js       # About page
+│   ├── services/page.js    # Services overview
+│   ├── services/[slug]/    # Service detail pages (SSG via generateStaticParams)
 │   ├── api/                # API routes (contact, quote)
-│   └── [page]/page.js     # about, services, projects, contact, quote
+│   └── [page]/page.js     # projects, contact, quote
 ├── components/
 │   ├── ui/                 # Design system primitives (see below)
 │   ├── layout/             # Navbar, Footer, MobileMenu, Container
@@ -64,6 +67,7 @@ All in `src/components/ui/`. Import via `@/components/ui/ComponentName`.
 | **Badge** | `variant` (default/blue/gold/green/red), `size` (sm/md) | Pill-shaped |
 | **Modal** | `open`, `onClose`, `title`, `size` (sm/md/lg/xl) | ESC/overlay close, scroll lock. `'use client'` |
 | **Spinner** | `size` (sm/md/lg), `label` | Screen reader accessible |
+| **Accordion** | `items` ({question,answer}[]), `className` | Single-open FAQ accordion. Framer Motion animation. `'use client'` |
 | **Container** | `className` | `max-w-7xl`, responsive px. In `layout/` |
 
 ## Brand & Design
