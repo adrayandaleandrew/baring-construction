@@ -79,14 +79,30 @@ npm run start
 src/
 ├── app/                # Pages and API routes
 ├── components/
-│   ├── ui/             # Reusable UI components (Button, Card, Input, etc.)
-│   ├── layout/         # Navbar, Footer, MobileMenu
+│   ├── ui/             # Design system (Button, Card, Input, Textarea, Select, Badge, Modal, Spinner)
+│   ├── layout/         # Navbar, Footer, MobileMenu, Container
 │   ├── sections/       # Homepage sections (Hero, Services, Projects, etc.)
 │   ├── forms/          # Contact and Quote forms
 │   └── project/        # Project cards, filters, gallery
 ├── lib/                # Utilities, constants, validations, analytics
 └── data/               # Static data (services, projects, testimonials)
 ```
+
+## Design System
+
+Reusable UI primitives in `src/components/ui/`:
+
+| Component | Description |
+|-----------|-------------|
+| **Button** | 5 variants (primary, secondary, outline, ghost, white), 3 sizes, loading state, link mode |
+| **Card** | Composable card with CardHeader, CardBody, CardFooter |
+| **Input** | Text input with label, error/help text, ARIA bindings |
+| **Textarea** | Multi-line input, same API as Input |
+| **Select** | Dropdown with custom chevron, accepts strings or objects |
+| **Badge** | Category/status labels with color variants |
+| **Modal** | Dialog with ESC/overlay close, scroll lock, focus management |
+| **Spinner** | Branded loading indicator, screen reader accessible |
+| **Container** | Page width wrapper (max-w-7xl, responsive padding) |
 
 ## Environment Variables
 
