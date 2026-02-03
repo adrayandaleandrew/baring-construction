@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-6">
+    <div className="flex min-h-screen flex-col items-center justify-center px-6">
       <h1 className="font-heading text-5xl font-bold text-baring-blue-500 mb-4">
         Baring Construction Services
       </h1>
@@ -8,6 +8,6 @@ export default function Home() {
         Premium construction services for residential, commercial, and
         industrial projects across Metro Manila, Rizal, and Pampanga.
       </p>
-    </main>
+    </div>
   );
 }
