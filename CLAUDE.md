@@ -110,6 +110,14 @@ All in `src/components/ui/`. Import via `@/components/ui/ComponentName`.
 - **Security:** Input sanitization, CSRF protection, rate limiting, secure headers (configured in next.config.mjs)
 - **Max 7 nav items**, primary CTA is always "Request Quote"
 
+## Documentation Updates
+
+After coding changes, keep these files in sync:
+
+- **`CLAUDE.md`** — Update after **structural changes**: new components, new directories, new scripts, new conventions, new dependencies. This is the primary living doc.
+- **`README.md`** — Update at the **end of each phase** or when user-facing project info changes (features, setup steps, structure).
+- **`SOFTWARE_SPECIFICATIONS.md`, `BEST_PRACTICES.md`, `UX_DESIGN_BEST_PRACTICES.md`** — **Do not update.** These are reference blueprints, not living docs.
+
 ## Git Workflow
 
 - **Create a new branch before starting each task or phase.** Every task/phase gets its own branch for tracking and auditability.
