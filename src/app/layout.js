@@ -1,4 +1,6 @@
 import { Montserrat, Open_Sans } from 'next/font/google';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
 import './globals.css';
 
 const montserrat = Montserrat({
@@ -46,7 +48,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${montserrat.variable} ${openSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        <main id="main-content">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
