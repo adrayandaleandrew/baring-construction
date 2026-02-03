@@ -110,6 +110,14 @@ All in `src/components/ui/`. Import via `@/components/ui/ComponentName`.
 - **Security:** Input sanitization, CSRF protection, rate limiting, secure headers (configured in next.config.mjs)
 - **Max 7 nav items**, primary CTA is always "Request Quote"
 
+## Git Workflow
+
+- **Create a new branch before starting each task or phase.** Every task/phase gets its own branch for tracking and auditability.
+- Branch naming: `feature/<phase-or-task-name>` (e.g., `feature/homepage`, `feature/contact-form`, `feature/seo-optimization`)
+- Commit messages: single-line, concise.
+- Push the branch to GitHub when the task is complete.
+- Base new branches off `master` (or the current main branch).
+
 ## Commands
 
 ```bash
