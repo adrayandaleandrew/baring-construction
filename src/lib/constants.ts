@@ -10,29 +10,37 @@ export const SITE_CONFIG: SiteConfig = {
   shortName: 'Baring Construction',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://baringconstruction.com',
   description:
-    'Professional construction services for residential, commercial, and industrial projects. Serving Metro Manila, Rizal, and Pampanga.',
+    'Professional construction services for residential, commercial, and industrial projects. Serving Batangas, Laguna, and Cavite.',
 };
 
 export const CONTACT_INFO: ContactInfo = {
   phone: '+63 XXX XXX XXXX',
-  email: 'info@baringconstruction.ph',
-  whatsapp: '63XXXXXXXXXX',
+  email: 'baringcons@gmail.com',
   address: '',
   businessHours: 'Monday - Saturday: 8:00 AM - 6:00 PM',
 };
 
 export const SERVICE_AREAS: ServiceArea[] = [
   {
-    region: 'Metro Manila',
-    cities: ['Makati', 'Taguig', 'Quezon City', 'Manila', 'Pasig', 'Mandaluyong'],
+    region: 'Batangas',
+    cities: [
+      'Ibaan', 'Lipa', 'Batangas City',
+      'Tanauan', 'Nasugbu', 'Santo Tomas',
+    ],
   },
   {
-    region: 'Rizal',
-    cities: ['Antipolo', 'Cainta', 'Taytay', 'Angono'],
+    region: 'Laguna',
+    cities: [
+      'Santa Rosa', 'Calamba', 'San Pedro',
+      'Cabuyao', 'Biñan',
+    ],
   },
   {
-    region: 'Pampanga',
-    cities: ['San Fernando', 'Angeles', 'Clark'],
+    region: 'Cavite',
+    cities: [
+      'Bacoor', 'Imus', 'Dasmariñas',
+      'General Trias', 'Silang',
+    ],
   },
 ];
 

@@ -129,7 +129,6 @@ export interface SiteConfig {
 export interface ContactInfo {
   phone: string;
   email: string;
-  whatsapp: string;
   address: string;
   businessHours: string;
 }

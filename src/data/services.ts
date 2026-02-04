@@ -47,19 +47,19 @@ export const SERVICES: Service[] = [
       {
         question: 'What areas do you serve?',
         answer:
-          'We serve Metro Manila, Rizal, and Pampanga. Contact us for projects outside these areas as we evaluate on a case-by-case basis.',
+          'We serve Batangas, Laguna, and Cavite. Contact us for projects outside these areas as we evaluate on a case-by-case basis.',
       },
     ],
     metadata: {
       metaTitle:
         'General Construction Services | Baring Construction',
       metaDescription:
-        'Complete construction solutions for residential, commercial, and industrial projects across Metro Manila, Rizal, and Pampanga.',
+        'Complete construction solutions for residential, commercial, and industrial projects across Batangas, Laguna, and Cavite.',
       keywords: [
         'general contractor',
         'house construction',
         'commercial construction',
-        'Manila contractor',
+        'Batangas contractor',
       ],
     },
   },
@@ -111,7 +111,7 @@ export const SERVICES: Service[] = [
       metaTitle:
         'Electrical Works & Installation Services | Baring Construction',
       metaDescription:
-        'Professional electrical installation services including panel boards, cable systems, and industrial power distribution across Metro Manila.',
+        'Professional electrical installation services including panel boards, cable systems, and industrial power distribution across Batangas, Laguna, and Cavite.',
       keywords: [
         'electrical contractor',
         'electrical installation',
@@ -309,7 +309,7 @@ export const SERVICES: Service[] = [
       metaTitle:
         'Specialized Construction Services | Baring Construction',
       metaDescription:
-        'Specialized construction services including swimming pools, landscaping, and custom projects across Metro Manila.',
+        'Specialized construction services including swimming pools, landscaping, and custom projects across Batangas, Laguna, and Cavite.',
       keywords: [
         'swimming pool construction',
         'landscaping',

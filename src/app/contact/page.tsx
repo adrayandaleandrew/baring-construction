@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import {
   Phone,
   Mail,
-  MessageCircle,
   Clock,
   MapPin,
 } from 'lucide-react';
@@ -18,7 +17,7 @@ import {
 export const metadata: Metadata = {
   title: 'Contact Us | Baring Construction Services',
   description:
-    'Get in touch with Baring Construction Services. Call, email, or send us a message. Serving Metro Manila, Rizal, and Pampanga.',
+    'Get in touch with Baring Construction Services. Call, email, or send us a message. Serving Batangas, Laguna, and Cavite.',
 };
 
 export default function ContactPage() {
@@ -95,27 +94,6 @@ export default function ContactPage() {
                       className="mt-1 block text-sm text-gray-600 transition-colors hover:text-baring-blue-500"
                     >
                       {CONTACT_INFO.email}
-                    </a>
-                  </div>
-                </CardBody>
-              </Card>
-
-              <Card>
-                <CardBody className="flex items-start gap-4 p-5">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-50">
-                    <MessageCircle className="h-5 w-5 text-green-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading text-sm font-semibold text-gray-900">
-                      WhatsApp
-                    </h3>
-                    <a
-                      href={`https://wa.me/${CONTACT_INFO.whatsapp}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-1 block text-sm text-gray-600 transition-colors hover:text-green-600"
-                    >
-                      Message us on WhatsApp
                     </a>
                   </div>
                 </CardBody>

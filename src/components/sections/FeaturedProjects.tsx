@@ -18,8 +18,8 @@ export function FeaturedProjects() {
             Featured Projects
           </h2>
           <p className="mt-4 text-lg text-gray-600">
-            Browse our portfolio of completed construction projects across Metro
-            Manila, Rizal, and Pampanga.
+            Browse our portfolio of completed construction projects across
+            Batangas, Laguna, and Cavite.
           </p>
         </div>
 

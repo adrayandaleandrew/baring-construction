@@ -1,6 +1,6 @@
 # Baring Construction Services Website
 
-Professional construction company website built with Next.js and Tailwind CSS. Conversion-focused site that generates leads through contact/quote forms and showcases completed projects across Metro Manila, Rizal, and Pampanga.
+Professional construction company website built with Next.js and Tailwind CSS. Conversion-focused site that generates leads through contact/quote forms and showcases completed projects across Batangas, Laguna, and Cavite.
 
 ## Features
 
@@ -90,7 +90,7 @@ npm run start
 | `/services/[slug]` | Service detail with sub-services, FAQs, process steps, CTA |
 | `/projects` | Project portfolio with category filtering (5 categories) |
 | `/projects/[slug]` | Project detail with gallery, specs, challenges/solutions, related projects |
-| `/contact` | Contact form, phone/email/WhatsApp cards, service areas map |
+| `/contact` | Contact form, phone/email cards, service areas map |
 | `/quote` | Multi-section quote form with file upload and "What Happens Next" steps |
 | `/privacy-policy` | Privacy policy |
 

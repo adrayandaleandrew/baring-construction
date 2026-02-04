@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Professional construction company website built with Next.js and Tailwind CSS. Conversion-focused site that generates leads through contact/quote forms and showcases completed projects across Metro Manila, Rizal, and Pampanga.
+Professional construction company website built with Next.js and Tailwind CSS. Conversion-focused site that generates leads through contact/quote forms and showcases completed projects across Batangas, Laguna, and Cavite.
 
 **Detailed docs** (reference when needed):
 - `SOFTWARE_SPECIFICATIONS.md` — Full spec: pages, data models, APIs, user stories, phases

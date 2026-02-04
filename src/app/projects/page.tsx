@@ -7,7 +7,7 @@ import { PROJECTS } from '@/data/projects';
 export const metadata: Metadata = {
   title: 'Our Projects | Baring Construction Services',
   description:
-    'Browse our portfolio of completed construction projects across Metro Manila, Rizal, and Pampanga. Residential, commercial, industrial, and electrical projects.',
+    'Browse our portfolio of completed construction projects across Batangas, Laguna, and Cavite. Residential, commercial, industrial, and electrical projects.',
 };
 
 export default function ProjectsPage() {

@@ -12,7 +12,7 @@ function getResend(): Resend {
 const FROM_EMAIL =
   process.env.FROM_EMAIL || 'noreply@baringconstruction.ph';
 const TO_EMAIL =
-  process.env.CONTACT_EMAIL || 'info@baringconstruction.ph';
+  process.env.CONTACT_EMAIL || 'baringcons@gmail.com';
 
 function escapeHtml(str: string): string {
   return str
@@ -178,7 +178,7 @@ export async function sendAutoReply(
       </p>
       <ul style="color: #555;">
         <li>Phone: +63 XXX XXX XXXX</li>
-        <li>Email: info@baringconstruction.ph</li>
+        <li>Email: baringcons@gmail.com</li>
       </ul>
       <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
       <p style="color: #999; font-size: 12px;">

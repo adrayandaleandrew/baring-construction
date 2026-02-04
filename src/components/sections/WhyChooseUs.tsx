@@ -19,7 +19,7 @@ const BENEFITS: Benefit[] = [
     icon: Globe,
     title: 'Multi-Regional Service',
     description:
-      'Serving Metro Manila, Rizal, and Pampanga with the same level of dedication and professionalism regardless of location.',
+      'Serving Batangas, Laguna, and Cavite with the same level of dedication and professionalism regardless of location.',
   },
   {
     icon: Users,
