@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { X, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -95,7 +96,14 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-          <span className="font-heading text-lg font-bold text-baring-blue-500">
+          <span className="flex items-center gap-2 font-heading text-lg font-bold text-baring-blue-500">
+            <Image
+              src="/images/logo/logo.jpg"
+              alt={`${SITE_CONFIG.shortName} logo`}
+              width={32}
+              height={32}
+              className="h-8 w-8 rounded-full"
+            />
             {SITE_CONFIG.shortName}
           </span>
           <button
