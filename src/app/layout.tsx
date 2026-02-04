@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { Montserrat, Open_Sans } from 'next/font/google';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { Analytics } from '@/components/layout/Analytics';
 import { SITE_CONFIG, CONTACT_INFO } from '@/lib/constants';
 import './globals.css';
 
@@ -93,6 +95,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
         <Navbar />
         <main id="main-content">{children}</main>
         <Footer />

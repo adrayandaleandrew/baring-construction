@@ -18,6 +18,8 @@ import {
   BUDGET_RANGES,
   TIMELINE_OPTIONS,
 } from '@/lib/constants';
+import { getRecaptchaToken } from '@/lib/recaptcha-client';
+import { event as gaEvent } from '@/lib/analytics';
 
 type FormStatus = 'idle' | 'success' | 'error';
 
@@ -48,12 +50,17 @@ export function QuoteForm() {
   async function onSubmit(data: QuoteFormData) {
     setStatus('idle');
     try {
+      const recaptchaToken = await getRecaptchaToken('quote');
+
       const formData = new FormData();
       Object.entries(data).forEach(([key, value]) => {
         if (value !== undefined && value !== '') {
           formData.append(key, value);
         }
       });
+      if (recaptchaToken) {
+        formData.append('recaptchaToken', recaptchaToken);
+      }
       files.forEach((file) => formData.append('files', file));
 
       const res = await fetch('/api/quote', {
@@ -62,6 +69,12 @@ export function QuoteForm() {
       });
 
       if (!res.ok) throw new Error('Failed to submit quote');
+
+      gaEvent({
+        action: 'quote_request_submitted',
+        category: 'conversion',
+        label: data.projectType,
+      });
 
       setStatus('success');
       reset();

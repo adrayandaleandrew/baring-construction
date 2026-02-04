@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { ContactFormSchema } from '@/lib/validations';
 import { sendContactEmail, sendAutoReply } from '@/lib/email';
+import { verifyRecaptcha } from '@/lib/recaptcha';
 
 const rateLimit = new Map<string, number>();
 const RATE_LIMIT_WINDOW = 60_000; // 1 minute
@@ -44,6 +45,21 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
+
+    // Verify reCAPTCHA token
+    if (body.recaptchaToken) {
+      const captcha = await verifyRecaptcha(
+        body.recaptchaToken,
+        'contact'
+      );
+      if (!captcha.valid) {
+        return NextResponse.json(
+          { error: 'reCAPTCHA verification failed' },
+          { status: 400 }
+        );
+      }
+    }
+
     const result = ContactFormSchema.safeParse(body);
 
     if (!result.success) {

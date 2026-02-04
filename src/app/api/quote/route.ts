@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { QuoteFormSchema } from '@/lib/validations';
 import { sendQuoteEmail } from '@/lib/email';
+import { verifyRecaptcha } from '@/lib/recaptcha';
 import {
   MAX_FILE_SIZE,
   ALLOWED_FILE_TYPES,
@@ -10,6 +11,21 @@ import {
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
+
+    // Verify reCAPTCHA token
+    const recaptchaToken = formData.get('recaptchaToken') as string;
+    if (recaptchaToken) {
+      const captcha = await verifyRecaptcha(
+        recaptchaToken,
+        'quote'
+      );
+      if (!captcha.valid) {
+        return NextResponse.json(
+          { error: 'reCAPTCHA verification failed' },
+          { status: 400 }
+        );
+      }
+    }
 
     // Extract text fields
     const textFields = {
