@@ -19,6 +19,14 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
   const [servicesOpen, setServicesOpen] = useState<boolean>(false);
   const pathname = usePathname();
 
+  // Reset menu state on route change (adjust state during render)
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    onClose();
+    setServicesOpen(false);
+  }
+
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -36,11 +44,6 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
       document.body.style.overflow = '';
     };
   }, [open, handleKeyDown]);
-
-  useEffect(() => {
-    onClose();
-    setServicesOpen(false);
-  }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
