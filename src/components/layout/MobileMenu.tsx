@@ -30,9 +30,14 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
   }
 
   // Manage mount/unmount with CSS transitions
+  // When `open` becomes true, mark visible immediately during render
+  // so the DOM mounts before the transition class is applied.
+  if (open && !visible) {
+    setVisible(true);
+  }
+
   useEffect(() => {
     if (open) {
-      setVisible(true);
       // Trigger reflow before adding transition class
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
