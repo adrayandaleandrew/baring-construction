@@ -203,8 +203,7 @@ describe('QuoteFormSchema', () => {
   });
 
   it('accepts quote without company field', () => {
-    const { company: _, ...noCompany } = validQuote;
-    const result = QuoteFormSchema.safeParse(noCompany);
+    const result = QuoteFormSchema.safeParse(validQuote);
     expect(result.success).toBe(true);
   });
 
