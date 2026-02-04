@@ -11,6 +11,7 @@ Professional construction company website built with Next.js and Tailwind CSS. C
 
 ## Tech Stack
 
+- **Language:** TypeScript (strict mode, `tsconfig.json`)
 - **Framework:** Next.js 16 (App Router, Server Components by default)
 - **Styling:** Tailwind CSS v4 (theme configured in `globals.css` via `@theme`, NOT tailwind.config.js)
 - **Fonts:** Montserrat (headings), Open Sans (body) — loaded via `next/font/google`
@@ -26,14 +27,14 @@ Professional construction company website built with Next.js and Tailwind CSS. C
 ```
 src/
 ├── app/                    # Next.js App Router pages
-│   ├── layout.js           # Root layout (fonts, metadata)
+│   ├── layout.tsx          # Root layout (fonts, metadata)
 │   ├── globals.css         # Tailwind theme + base styles
-│   ├── page.js             # Homepage
-│   ├── about/page.js       # About page
-│   ├── services/page.js    # Services overview
+│   ├── page.tsx            # Homepage
+│   ├── about/page.tsx      # About page
+│   ├── services/page.tsx   # Services overview
 │   ├── services/[slug]/    # Service detail pages (SSG via generateStaticParams)
 │   ├── api/                # API routes (contact, quote)
-│   └── [page]/page.js     # projects, contact, quote
+│   └── [page]/page.tsx    # projects, contact, quote
 ├── components/
 │   ├── ui/                 # Design system primitives (see below)
 │   ├── layout/             # Navbar, Footer, MobileMenu, Container
@@ -41,15 +42,17 @@ src/
 │   ├── forms/              # ContactForm, QuoteForm, FileUpload, FormField
 │   └── project/            # ProjectCard, ProjectFilter, ProjectGallery
 ├── lib/
-│   ├── utils.js            # cn(), formatCurrency(), formatDate(), slugify(), truncate()
-│   ├── constants.js        # SITE_CONFIG, CONTACT_INFO, PROJECT_TYPES, BUDGET_RANGES
-│   ├── validations.js      # Zod schemas: ContactFormSchema, QuoteFormSchema
-│   └── analytics.js        # GA4 helpers: pageview(), event()
+│   ├── utils.ts            # cn(), formatCurrency(), formatDate(), slugify(), truncate()
+│   ├── constants.ts        # SITE_CONFIG, CONTACT_INFO, PROJECT_TYPES, BUDGET_RANGES
+│   ├── validations.ts      # Zod schemas: ContactFormSchema, QuoteFormSchema
+│   └── analytics.ts        # GA4 helpers: pageview(), event()
 ├── data/
-│   ├── navigation.js       # NAV_ITEMS, FOOTER_LINKS
-│   ├── services.js         # SERVICES array (6 services)
-│   ├── projects.js         # PROJECTS array (6 projects)
-│   └── testimonials.js     # TESTIMONIALS array
+│   ├── navigation.ts       # NAV_ITEMS, FOOTER_LINKS
+│   ├── services.ts         # SERVICES array (6 services)
+│   ├── projects.ts         # PROJECTS array (6 projects)
+│   └── testimonials.ts     # TESTIMONIALS array
+├── types/
+│   └── index.ts            # Shared type definitions (NavItem, Service, Project, etc.)
 └── styles/
 ```
 
@@ -80,7 +83,7 @@ All in `src/components/ui/`. Import via `@/components/ui/ComponentName`.
 
 ## Code Conventions
 
-- **Files:** kebab-case (`contact-form.jsx`)
+- **Files:** kebab-case (`contact-form.tsx`)
 - **Components:** PascalCase (`ContactForm`)
 - **Functions:** camelCase (`getProjects()`)
 - **Constants:** UPPER_SNAKE_CASE (`API_BASE_URL`)
@@ -89,12 +92,21 @@ All in `src/components/ui/`. Import via `@/components/ui/ComponentName`.
 - **Max line width:** 80 chars
 - **Indentation:** 2 spaces
 
+### TypeScript Conventions
+
+- Use `interface` for object shapes, `type` for unions/aliases.
+- Shared types live in `src/types/index.ts`. Import via `@/types`.
+- Use `import type` for type-only imports.
+- Infer Zod types: `type ContactFormData = z.infer<typeof ContactFormSchema>`.
+- Component props use co-located interfaces (e.g., `interface ButtonProps`).
+
 ### Import Order
 
-1. React/Next.js (`react`, `next/image`, `next/link`)
-2. Third-party (`framer-motion`, `clsx`)
-3. Internal components (`@/components/ui/Button`)
-4. Data/utilities (`@/data/services`, `@/lib/utils`)
+1. Type imports (`import type { Metadata } from 'next'`)
+2. React/Next.js (`react`, `next/image`, `next/link`)
+3. Third-party (`framer-motion`, `clsx`)
+4. Internal components (`@/components/ui/Button`)
+5. Data/utilities (`@/data/services`, `@/lib/utils`)
 
 ### Component Rules
 
@@ -137,6 +149,7 @@ npm run dev          # Development server
 npm run build        # Production build
 npm run start        # Production server
 npm run lint         # ESLint
+npm run type-check   # TypeScript type checking (tsc --noEmit)
 npm run format       # Prettier format
 npm run format:check # Prettier check
 ```

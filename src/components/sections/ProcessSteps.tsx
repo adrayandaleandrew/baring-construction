@@ -1,6 +1,12 @@
 import { Container } from '@/components/layout/Container';
 
-const STEPS = [
+interface Step {
+  step: number;
+  title: string;
+  description: string;
+}
+
+const STEPS: Step[] = [
   {
     step: 1,
     title: 'Consultation',

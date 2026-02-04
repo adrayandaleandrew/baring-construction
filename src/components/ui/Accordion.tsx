@@ -4,11 +4,17 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import type { ServiceFAQ } from '@/types';
 
-export function Accordion({ items = [], className }) {
-  const [openIndex, setOpenIndex] = useState(null);
+interface AccordionProps {
+  items?: ServiceFAQ[];
+  className?: string;
+}
 
-  const toggle = (index) => {
+export function Accordion({ items = [], className }: AccordionProps) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggle = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
   };
 

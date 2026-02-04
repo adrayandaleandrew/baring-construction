@@ -1,5 +1,6 @@
 'use client';
 
+import type { ComponentPropsWithoutRef } from 'react';
 import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
@@ -15,13 +16,25 @@ const variants = {
     'text-baring-blue-500 hover:bg-baring-blue-50 active:bg-baring-blue-100',
   white:
     'bg-white text-baring-blue-500 hover:bg-gray-50 active:bg-gray-100',
-};
+} as const;
 
 const sizes = {
   sm: 'px-4 py-2 text-sm min-h-[36px]',
   md: 'px-6 py-3 text-base min-h-[44px]',
   lg: 'px-8 py-4 text-lg min-h-[52px]',
-};
+} as const;
+
+type ButtonVariant = keyof typeof variants;
+type ButtonSize = keyof typeof sizes;
+
+interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  href?: string;
+  loading?: boolean;
+  disabled?: boolean;
+  fullWidth?: boolean;
+}
 
 export function Button({
   children,
@@ -33,7 +46,7 @@ export function Button({
   fullWidth = false,
   className,
   ...props
-}) {
+}: ButtonProps) {
   const classes = cn(
     'inline-flex items-center justify-center gap-2 rounded-lg font-heading font-semibold transition-colors duration-200',
     'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-baring-blue-500',
@@ -46,7 +59,7 @@ export function Button({
 
   if (href && !disabled) {
     return (
-      <Link href={href} className={classes} {...props}>
+      <Link href={href} className={classes}>
         {children}
       </Link>
     );

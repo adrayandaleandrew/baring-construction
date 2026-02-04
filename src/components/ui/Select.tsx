@@ -1,5 +1,18 @@
+import type { ComponentPropsWithRef } from 'react';
 import { cn } from '@/lib/utils';
 import { ChevronDown } from 'lucide-react';
+
+type SelectOption = string | { label: string; value: string };
+
+interface SelectProps extends ComponentPropsWithRef<'select'> {
+  label?: string;
+  id?: string;
+  options?: SelectOption[];
+  placeholder?: string;
+  error?: string;
+  helpText?: string;
+  required?: boolean;
+}
 
 export function Select({
   label,
@@ -12,7 +25,7 @@ export function Select({
   className,
   ref,
   ...props
-}) {
+}: SelectProps) {
   return (
     <div className="w-full">
       {label && (

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
   Home,
@@ -9,19 +10,20 @@ import {
   ArrowRight,
   CheckCircle,
 } from 'lucide-react';
+import type { IconMap } from '@/types';
 import { Container } from '@/components/layout/Container';
 import { Card, CardBody } from '@/components/ui/Card';
 import { ProcessSteps } from '@/components/sections/ProcessSteps';
 import { CallToAction } from '@/components/sections/CallToAction';
 import { SERVICES } from '@/data/services';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Our Services | Baring Construction Services',
   description:
     'Explore our comprehensive construction services including general construction, electrical works, civil & structural, architectural, MEPF, and specialized services across Metro Manila.',
 };
 
-const ICON_MAP = {
+const ICON_MAP: IconMap = {
   Home,
   Zap,
   Building2,

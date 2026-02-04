@@ -1,8 +1,15 @@
+import type { LucideIcon } from 'lucide-react';
 import { Building2, MapPin, Award } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/layout/Container';
 
-const TRUST_BADGES = [
+interface TrustBadge {
+  icon: LucideIcon;
+  label: string;
+  description: string;
+}
+
+const TRUST_BADGES: TrustBadge[] = [
   { icon: Building2, label: '50+ Projects', description: 'Completed' },
   { icon: MapPin, label: '3 Regions', description: 'Served' },
   { icon: Award, label: '100%', description: 'Satisfaction' },

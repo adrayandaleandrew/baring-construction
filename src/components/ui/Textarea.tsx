@@ -1,15 +1,26 @@
+import type { ComponentPropsWithRef } from 'react';
 import { cn } from '@/lib/utils';
 
-export function Input({
+interface TextareaProps extends ComponentPropsWithRef<'textarea'> {
+  label?: string;
+  id?: string;
+  error?: string;
+  helpText?: string;
+  required?: boolean;
+  rows?: number;
+}
+
+export function Textarea({
   label,
   id,
   error,
   helpText,
   required = false,
+  rows = 4,
   className,
   ref,
   ...props
-}) {
+}: TextareaProps) {
   return (
     <div className="w-full">
       {label && (
@@ -21,15 +32,16 @@ export function Input({
           {required && <span className="ml-1 text-red-500">*</span>}
         </label>
       )}
-      <input
+      <textarea
         id={id}
         ref={ref}
+        rows={rows}
         aria-invalid={!!error}
         aria-describedby={
           error ? `${id}-error` : helpText ? `${id}-help` : undefined
         }
         className={cn(
-          'w-full rounded-lg border px-4 py-3 text-base text-gray-900 placeholder:text-gray-400',
+          'w-full rounded-lg border px-4 py-3 text-base text-gray-900 placeholder:text-gray-400 resize-y',
           'transition-colors duration-200',
           'focus:border-baring-blue-500 focus:ring-2 focus:ring-baring-blue-500/20 focus:outline-none',
           error

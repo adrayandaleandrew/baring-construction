@@ -1,4 +1,6 @@
-export const TESTIMONIALS = [
+import type { Testimonial } from '@/types';
+
+export const TESTIMONIALS: Testimonial[] = [
   {
     id: 'test-001',
     author: 'Client Name',
