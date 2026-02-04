@@ -1,4 +1,6 @@
-export const SERVICES = [
+import type { Service } from '@/types';
+
+export const SERVICES: Service[] = [
   {
     id: 'svc-001',
     slug: 'general-construction',

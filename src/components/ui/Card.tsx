@@ -1,6 +1,16 @@
+import type { ComponentPropsWithoutRef } from 'react';
 import { cn } from '@/lib/utils';
 
-export function Card({ children, hover = false, className, ...props }) {
+interface CardProps extends ComponentPropsWithoutRef<'div'> {
+  hover?: boolean;
+}
+
+export function Card({
+  children,
+  hover = false,
+  className,
+  ...props
+}: CardProps) {
   return (
     <div
       className={cn(
@@ -16,7 +26,11 @@ export function Card({ children, hover = false, className, ...props }) {
   );
 }
 
-export function CardHeader({ children, className, ...props }) {
+export function CardHeader({
+  children,
+  className,
+  ...props
+}: ComponentPropsWithoutRef<'div'>) {
   return (
     <div className={cn('px-6 pt-6', className)} {...props}>
       {children}
@@ -24,7 +38,11 @@ export function CardHeader({ children, className, ...props }) {
   );
 }
 
-export function CardBody({ children, className, ...props }) {
+export function CardBody({
+  children,
+  className,
+  ...props
+}: ComponentPropsWithoutRef<'div'>) {
   return (
     <div className={cn('px-6 py-4', className)} {...props}>
       {children}
@@ -32,7 +50,11 @@ export function CardBody({ children, className, ...props }) {
   );
 }
 
-export function CardFooter({ children, className, ...props }) {
+export function CardFooter({
+  children,
+  className,
+  ...props
+}: ComponentPropsWithoutRef<'div'>) {
   return (
     <div
       className={cn('px-6 pb-6 pt-2', className)}

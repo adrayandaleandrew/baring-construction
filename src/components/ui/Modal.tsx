@@ -1,8 +1,27 @@
 'use client';
 
+import type { ReactNode } from 'react';
 import { useEffect, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
+
+const sizeClasses = {
+  sm: 'max-w-sm',
+  md: 'max-w-lg',
+  lg: 'max-w-2xl',
+  xl: 'max-w-4xl',
+} as const;
+
+type ModalSize = keyof typeof sizeClasses;
+
+interface ModalProps {
+  open?: boolean;
+  onClose?: () => void;
+  title?: string;
+  children: ReactNode;
+  size?: ModalSize;
+  className?: string;
+}
 
 export function Modal({
   open = false,
@@ -11,9 +30,9 @@ export function Modal({
   children,
   size = 'md',
   className,
-}) {
+}: ModalProps) {
   const handleKeyDown = useCallback(
-    (e) => {
+    (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose?.();
     },
     [onClose]
@@ -31,13 +50,6 @@ export function Modal({
   }, [open, handleKeyDown]);
 
   if (!open) return null;
-
-  const sizeClasses = {
-    sm: 'max-w-sm',
-    md: 'max-w-lg',
-    lg: 'max-w-2xl',
-    xl: 'max-w-4xl',
-  };
 
   return (
     <div

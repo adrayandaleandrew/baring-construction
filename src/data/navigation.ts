@@ -1,4 +1,6 @@
-export const NAV_ITEMS = [
+import type { NavItem, FooterLinks } from '@/types';
+
+export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   {
@@ -18,7 +20,7 @@ export const NAV_ITEMS = [
   { label: 'Request Quote', href: '/quote', cta: true },
 ];
 
-export const FOOTER_LINKS = {
+export const FOOTER_LINKS: FooterLinks = {
   services: [
     { label: 'General Construction', href: '/services/general-construction' },
     { label: 'Electrical Works', href: '/services/electrical-works' },

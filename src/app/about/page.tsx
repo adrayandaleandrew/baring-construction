@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+import type { LucideIcon } from 'lucide-react';
 import {
   ShieldCheck,
   Heart,
@@ -12,13 +14,19 @@ import { Button } from '@/components/ui/Button';
 import { Card, CardBody } from '@/components/ui/Card';
 import { SERVICE_AREAS } from '@/lib/constants';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'About Baring Construction Services | Our Story & Mission',
   description:
     'Learn about Baring Construction Services — our mission, values, and commitment to delivering exceptional construction projects across Metro Manila, Rizal, and Pampanga.',
 };
 
-const VALUES = [
+interface Value {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+const VALUES: Value[] = [
   {
     icon: ShieldCheck,
     title: 'Quality First',

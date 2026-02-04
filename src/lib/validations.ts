@@ -27,6 +27,8 @@ export const ContactFormSchema = z.object({
     .max(1000, 'Message must be less than 1000 characters'),
 });
 
+export type ContactFormData = z.infer<typeof ContactFormSchema>;
+
 export const QuoteFormSchema = z.object({
   name: z
     .string()
@@ -75,3 +77,5 @@ export const QuoteFormSchema = z.object({
     .min(50, 'Please provide at least 50 characters describing your project')
     .max(2000, 'Description must be less than 2000 characters'),
 });
+
+export type QuoteFormData = z.infer<typeof QuoteFormSchema>;

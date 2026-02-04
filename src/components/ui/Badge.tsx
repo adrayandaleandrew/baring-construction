@@ -1,3 +1,4 @@
+import type { ComponentPropsWithoutRef } from 'react';
 import { cn } from '@/lib/utils';
 
 const variants = {
@@ -6,12 +7,20 @@ const variants = {
   gold: 'bg-baring-gold-50 text-baring-gold-700',
   green: 'bg-green-50 text-green-700',
   red: 'bg-red-50 text-red-700',
-};
+} as const;
 
 const sizes = {
   sm: 'px-2 py-0.5 text-xs',
   md: 'px-2.5 py-1 text-sm',
-};
+} as const;
+
+type BadgeVariant = keyof typeof variants;
+type BadgeSize = keyof typeof sizes;
+
+interface BadgeProps extends ComponentPropsWithoutRef<'span'> {
+  variant?: BadgeVariant;
+  size?: BadgeSize;
+}
 
 export function Badge({
   children,
@@ -19,7 +28,7 @@ export function Badge({
   size = 'md',
   className,
   ...props
-}) {
+}: BadgeProps) {
   return (
     <span
       className={cn(

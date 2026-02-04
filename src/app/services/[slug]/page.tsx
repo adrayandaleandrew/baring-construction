@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -17,8 +18,13 @@ import { Button } from '@/components/ui/Button';
 import { Accordion } from '@/components/ui/Accordion';
 import { ProcessSteps } from '@/components/sections/ProcessSteps';
 import { SERVICES } from '@/data/services';
+import type { IconMap } from '@/types';
 
-const ICON_MAP = { Home, Zap, Building2, PenTool, Settings, Sparkles };
+const ICON_MAP: IconMap = { Home, Zap, Building2, PenTool, Settings, Sparkles };
+
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
 
 export function generateStaticParams() {
   return SERVICES.map((service) => ({
@@ -26,7 +32,9 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const service = SERVICES.find((s) => s.slug === slug);
   if (!service) return {};
@@ -42,7 +50,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function ServiceDetailPage({ params }) {
+export default async function ServiceDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const service = SERVICES.find((s) => s.slug === slug);
 

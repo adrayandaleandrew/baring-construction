@@ -1,7 +1,14 @@
+import type { LucideIcon } from 'lucide-react';
 import { ShieldCheck, Globe, Users, Wrench } from 'lucide-react';
 import { Container } from '@/components/layout/Container';
 
-const BENEFITS = [
+interface Benefit {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+const BENEFITS: Benefit[] = [
   {
     icon: ShieldCheck,
     title: 'Premium Quality',

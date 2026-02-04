@@ -10,12 +10,17 @@ import { NAV_ITEMS } from '@/data/navigation';
 import { SITE_CONFIG, CONTACT_INFO } from '@/lib/constants';
 import { Button } from '@/components/ui/Button';
 
-export function MobileMenu({ open, onClose }) {
-  const [servicesOpen, setServicesOpen] = useState(false);
+interface MobileMenuProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+export function MobileMenu({ open, onClose }: MobileMenuProps) {
+  const [servicesOpen, setServicesOpen] = useState<boolean>(false);
   const pathname = usePathname();
 
   const handleKeyDown = useCallback(
-    (e) => {
+    (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     },
     [onClose]
@@ -37,7 +42,7 @@ export function MobileMenu({ open, onClose }) {
     setServicesOpen(false);
   }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const isActive = (href) => {
+  const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
     return pathname.startsWith(href);
   };

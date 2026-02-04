@@ -11,8 +11,9 @@ import {
 import { Container } from '@/components/layout/Container';
 import { Card, CardBody } from '@/components/ui/Card';
 import { SERVICES } from '@/data/services';
+import type { IconMap } from '@/types';
 
-const ICON_MAP = {
+const ICON_MAP: IconMap = {
   Home,
   Zap,
   Building2,

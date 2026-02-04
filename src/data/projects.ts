@@ -1,4 +1,6 @@
-export const PROJECTS = [
+import type { Project } from '@/types';
+
+export const PROJECTS: Project[] = [
   {
     id: 'proj-001',
     slug: 'bannister-academy-antipolo',

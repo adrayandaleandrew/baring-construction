@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Montserrat, Open_Sans } from 'next/font/google';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -17,7 +18,7 @@ const openSans = Open_Sans({
   display: 'swap',
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Baring Construction Services | Premium Construction in Metro Manila',
   description:
     'Professional construction services for residential, commercial, and industrial projects. Serving Metro Manila, Rizal, and Pampanga. Get a free quote today.',
@@ -45,7 +46,7 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${montserrat.variable} ${openSans.variable}`}>
       <body>
