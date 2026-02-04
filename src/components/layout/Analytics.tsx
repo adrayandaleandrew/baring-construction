@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { GA_TRACKING_ID, pageview } from '@/lib/analytics';
 
@@ -21,11 +22,13 @@ export function Analytics() {
 
   return (
     <>
-      <script
-        async
+      <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+        strategy="lazyOnload"
       />
-      <script
+      <Script
+        id="ga4-init"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
