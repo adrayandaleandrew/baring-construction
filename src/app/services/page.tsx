@@ -20,7 +20,7 @@ import { SERVICES } from '@/data/services';
 export const metadata: Metadata = {
   title: 'Our Services | Baring Construction Services',
   description:
-    'Explore our comprehensive construction services including general construction, electrical works, civil & structural, architectural, MEPF, and specialized services across Metro Manila.',
+    'Explore our comprehensive construction services including general construction, electrical works, civil & structural, architectural, MEPF, and specialized services across Batangas, Laguna, and Cavite.',
 };
 
 const ICON_MAP: IconMap = {

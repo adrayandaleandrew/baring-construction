@@ -25,7 +25,7 @@ export function Hero() {
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
             Building Excellence Across{' '}
-            <span className="text-baring-gold-400">Metro Manila</span> & Beyond
+            <span className="text-baring-gold-400">Batangas</span> & Beyond
           </h1>
 
           <p className="mt-6 text-lg leading-relaxed text-gray-300 sm:text-xl">

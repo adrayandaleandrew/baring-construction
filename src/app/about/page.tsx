@@ -17,7 +17,7 @@ import { SERVICE_AREAS } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'About Baring Construction Services | Our Story & Mission',
   description:
-    'Learn about Baring Construction Services — our mission, values, and commitment to delivering exceptional construction projects across Metro Manila, Rizal, and Pampanga.',
+    'Learn about Baring Construction Services — our mission, values, and commitment to delivering exceptional construction projects across Batangas, Laguna, and Cavite.',
 };
 
 interface Value {
@@ -79,7 +79,7 @@ export default function AboutPage() {
               <span className="text-baring-gold-400">Excellence</span>
             </h1>
             <p className="mt-6 text-lg text-gray-300">
-              Professional construction services across Metro Manila and beyond.
+              Professional construction services across Batangas, Laguna, and Cavite.
               From concept to completion, we deliver quality that lasts.
             </p>
           </div>
@@ -99,8 +99,8 @@ export default function AboutPage() {
                 to deliver premium construction quality that Filipino families
                 and businesses can trust. What started as a dedicated team
                 serving local communities has grown into a multi-regional
-                construction company operating across Metro Manila, Rizal, and
-                Pampanga.
+                construction company operating across Batangas, Laguna, and
+                Cavite.
               </p>
               <p>
                 Over the years, we have completed over 50 projects ranging from
@@ -189,7 +189,7 @@ export default function AboutPage() {
               Where We Serve
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              Delivering quality construction across three key regions in Luzon.
+              Delivering quality construction across three key provinces in Southern Luzon.
             </p>
           </div>
 

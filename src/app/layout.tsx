@@ -30,11 +30,11 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Baring Construction Services | Premium Construction in Metro Manila',
+  title: 'Baring Construction Services | Premium Construction in Batangas',
   description:
-    'Professional construction services for residential, commercial, and industrial projects. Serving Metro Manila, Rizal, and Pampanga. Get a free quote today.',
+    'Professional construction services for residential, commercial, and industrial projects. Serving Batangas, Laguna, and Cavite. Get a free quote today.',
   keywords:
-    'construction Manila, general contractor, fit-out services, electrical works, MEPF, residential construction',
+    'construction Batangas, general contractor, fit-out services, electrical works, MEPF, residential construction',
   openGraph: {
     title: 'Baring Construction Services',
     description:
@@ -69,9 +69,9 @@ const jsonLd = {
       telephone: CONTACT_INFO.phone,
       email: CONTACT_INFO.email,
       areaServed: [
-        { '@type': 'City', name: 'Metro Manila' },
-        { '@type': 'City', name: 'Rizal' },
-        { '@type': 'City', name: 'Pampanga' },
+        { '@type': 'AdministrativeArea', name: 'Batangas' },
+        { '@type': 'AdministrativeArea', name: 'Laguna' },
+        { '@type': 'AdministrativeArea', name: 'Cavite' },
       ],
       openingHours: 'Mo-Sa 08:00-18:00',
     },
