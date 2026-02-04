@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Suspense } from 'react';
 import { Montserrat, Open_Sans } from 'next/font/google';
 import { Navbar } from '@/components/layout/Navbar';
@@ -20,6 +20,14 @@ const openSans = Open_Sans({
   variable: '--font-open-sans',
   display: 'swap',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#0047AB',
+};
 
 export const metadata: Metadata = {
   title: 'Baring Construction Services | Premium Construction in Metro Manila',
