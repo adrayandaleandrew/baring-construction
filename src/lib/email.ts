@@ -31,6 +31,11 @@ interface ContactEmailData {
   message: string;
 }
 
+interface FileLink {
+  name: string;
+  url: string;
+}
+
 interface QuoteEmailData {
   name: string;
   email: string;
@@ -42,6 +47,7 @@ interface QuoteEmailData {
   timeline: string;
   description: string;
   fileNames?: string[];
+  fileLinks?: FileLink[];
 }
 
 export async function sendContactEmail(data: ContactEmailData) {
@@ -81,14 +87,22 @@ export async function sendContactEmail(data: ContactEmailData) {
 }
 
 export async function sendQuoteEmail(data: QuoteEmailData) {
-  const filesHtml = data.fileNames?.length
-    ? `
+  let filesHtml = '';
+  if (data.fileLinks?.length) {
+    filesHtml = `
+      <h3 style="color: #0047AB; margin-top: 20px;">Attachments</h3>
+      <ul style="color: #555;">
+        ${data.fileLinks.map((f) => `<li><a href="${escapeHtml(f.url)}" style="color: #0047AB;">${escapeHtml(f.name)}</a></li>`).join('')}
+      </ul>
+    `;
+  } else if (data.fileNames?.length) {
+    filesHtml = `
       <h3 style="color: #0047AB; margin-top: 20px;">Attachments</h3>
       <ul style="color: #555;">
         ${data.fileNames.map((f) => `<li>${escapeHtml(f)}</li>`).join('')}
       </ul>
-    `
-    : '';
+    `;
+  }
 
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { put } from '@vercel/blob';
 import { QuoteFormSchema } from '@/lib/validations';
 import { sendQuoteEmail } from '@/lib/email';
 import { verifyRecaptcha } from '@/lib/recaptcha';
@@ -88,10 +89,24 @@ export async function POST(request: Request) {
       fileNames.push(file.name);
     }
 
-    // Send email with file names (no blob storage for MVP)
+    // Upload files to Vercel Blob if token configured
+    const fileLinks: { name: string; url: string }[] = [];
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      for (const file of files) {
+        if (!(file instanceof File) || file.size === 0) continue;
+        const blob = await put(
+          `quotes/${Date.now()}-${file.name}`,
+          file,
+          { access: 'public' }
+        );
+        fileLinks.push({ name: file.name, url: blob.url });
+      }
+    }
+
     await sendQuoteEmail({
       ...result.data,
       fileNames,
+      fileLinks: fileLinks.length > 0 ? fileLinks : undefined,
     });
 
     return NextResponse.json({
