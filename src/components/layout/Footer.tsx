@@ -116,13 +116,13 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 py-6">
           <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-400">
               &copy; {currentYear} {SITE_CONFIG.name}. All rights reserved.
             </p>
             <div className="flex gap-4">
               <Link
                 href="/privacy-policy"
-                className="text-xs text-gray-500 transition-colors hover:text-gray-300"
+                className="text-xs text-gray-400 transition-colors hover:text-gray-300"
               >
                 Privacy Policy
               </Link>

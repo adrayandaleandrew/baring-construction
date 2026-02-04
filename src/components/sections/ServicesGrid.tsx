@@ -62,6 +62,9 @@ export function ServicesGrid() {
                     className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-baring-blue-500 transition-colors hover:text-baring-blue-600"
                   >
                     Learn More
+                    <span className="sr-only">
+                      {' '}about {service.title}
+                    </span>
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </CardBody>
