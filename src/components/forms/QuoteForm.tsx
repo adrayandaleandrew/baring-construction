@@ -153,7 +153,7 @@ export function QuoteForm() {
               label="Phone Number"
               id="quote-phone"
               type="tel"
-              placeholder="+63 XXX XXX XXXX"
+              placeholder="+63 9XX XXX XXXX"
               required
               error={errors.phone?.message}
               {...register('phone')}

@@ -14,9 +14,9 @@ export const SITE_CONFIG: SiteConfig = {
 };
 
 export const CONTACT_INFO: ContactInfo = {
-  phone: '+63 XXX XXX XXXX',
+  phone: '+63 956 315 0476',
   email: 'baringcons@gmail.com',
-  address: '',
+  address: 'Coliat, Ibaan, Batangas',
   businessHours: 'Monday - Saturday: 8:00 AM - 6:00 PM',
 };
 

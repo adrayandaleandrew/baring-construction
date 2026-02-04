@@ -177,7 +177,7 @@ export async function sendAutoReply(
         If you need immediate assistance, feel free to contact us directly:
       </p>
       <ul style="color: #555;">
-        <li>Phone: +63 XXX XXX XXXX</li>
+        <li>Phone: +63 956 315 0476</li>
         <li>Email: baringcons@gmail.com</li>
       </ul>
       <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
