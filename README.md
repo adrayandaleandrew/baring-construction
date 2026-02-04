@@ -1,23 +1,29 @@
 # Baring Construction Services Website
 
-Professional construction company website built with Next.js and Tailwind CSS.
+Professional construction company website built with Next.js and Tailwind CSS. Conversion-focused site that generates leads through contact/quote forms and showcases completed projects across Metro Manila, Rizal, and Pampanga.
 
 ## Features
 
 - Lightning-fast performance with Next.js App Router and Server Components
 - Responsive, mobile-first design with Tailwind CSS
-- SEO-optimized with structured data, Open Graph, and sitemap
-- Contact and quote request forms with Zod validation
-- Project portfolio with category filtering and image galleries
-- Email notifications via Resend API
-- Accessibility compliant (WCAG AA)
-- Security hardened with CSP, HSTS, and input sanitization
+- SEO-optimized with JSON-LD structured data, Open Graph, sitemap, and robots.txt
+- Contact and quote request forms with client + server Zod validation
+- reCAPTCHA v3 spam prevention on all forms
+- Google Analytics 4 with custom conversion event tracking
+- Project portfolio with category filtering and Framer Motion animations
+- Image lightbox gallery with keyboard navigation
+- Email notifications and auto-replies via Resend API
+- Drag-and-drop file upload on quote requests
+- Accessibility compliant (WCAG AA, semantic HTML, ARIA labels, 44px touch targets)
+- Security hardened with CSP, HSTS, Permissions-Policy, rate limiting, and input sanitization
+- Custom 404 and error boundary pages
 
 ## Tech Stack
 
 | Category | Technology |
 |----------|------------|
 | Framework | Next.js 16 (App Router) |
+| Language | TypeScript (strict mode) |
 | Styling | Tailwind CSS v4 |
 | Icons | Lucide React |
 | Forms | React Hook Form + Zod |
@@ -70,22 +76,50 @@ npm run start
 | `npm run build` | Create production build |
 | `npm run start` | Start production server |
 | `npm run lint` | Run ESLint |
+| `npm run type-check` | TypeScript type checking |
 | `npm run format` | Format code with Prettier |
 | `npm run format:check` | Check formatting |
+
+## Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | Homepage with hero, services grid, featured projects, testimonials, CTA |
+| `/about` | Company story, mission, values, capabilities, service areas |
+| `/services` | Services overview (6 services with icons and sub-service lists) |
+| `/services/[slug]` | Service detail with sub-services, FAQs, process steps, CTA |
+| `/projects` | Project portfolio with category filtering (5 categories) |
+| `/projects/[slug]` | Project detail with gallery, specs, challenges/solutions, related projects |
+| `/contact` | Contact form, phone/email/WhatsApp cards, service areas map |
+| `/quote` | Multi-section quote form with file upload and "What Happens Next" steps |
+| `/privacy-policy` | Privacy policy |
+
+## API Routes
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/contact` | POST | Contact form (Zod validation, reCAPTCHA v3, rate limiting, email + auto-reply) |
+| `/api/quote` | POST | Quote request (FormData, Zod validation, reCAPTCHA v3, file validation, email) |
 
 ## Project Structure
 
 ```
 src/
-├── app/                # Pages and API routes
+├── app/                    # Pages and API routes
+│   ├── api/                # contact, quote endpoints
+│   ├── services/[slug]/    # Dynamic service pages (SSG)
+│   ├── projects/[slug]/    # Dynamic project pages (SSG)
+│   └── ...                 # Static pages
 ├── components/
-│   ├── ui/             # Design system (Button, Card, Input, Textarea, Select, Badge, Modal, Spinner)
-│   ├── layout/         # Navbar, Footer, MobileMenu, Container
-│   ├── sections/       # Homepage sections (Hero, Services, Projects, etc.)
-│   ├── forms/          # Contact and Quote forms
-│   └── project/        # Project cards, filters, gallery
-├── lib/                # Utilities, constants, validations, analytics
-└── data/               # Static data (services, projects, testimonials)
+│   ├── ui/                 # Design system (Button, Card, Input, Modal, etc.)
+│   ├── layout/             # Navbar, Footer, MobileMenu, Container, Analytics
+│   ├── sections/           # Hero, ServicesGrid, FeaturedProjects, ProcessSteps, etc.
+│   ├── forms/              # ContactForm, QuoteForm, FileUpload
+│   └── project/            # ProjectCard, ProjectFilter, ProjectGallery, ProjectsListing
+├── lib/                    # Utilities, constants, validations, email, analytics, reCAPTCHA
+├── data/                   # Static data (services, projects, testimonials, navigation)
+├── types/                  # Shared TypeScript type definitions
+└── styles/                 # Additional styles
 ```
 
 ## Design System
@@ -100,23 +134,44 @@ Reusable UI primitives in `src/components/ui/`:
 | **Textarea** | Multi-line input, same API as Input |
 | **Select** | Dropdown with custom chevron, accepts strings or objects |
 | **Badge** | Category/status labels with color variants |
-| **Modal** | Dialog with ESC/overlay close, scroll lock, focus management |
+| **Modal** | Dialog with ESC/overlay close, scroll lock |
 | **Spinner** | Branded loading indicator, screen reader accessible |
-| **Container** | Page width wrapper (max-w-7xl, responsive padding) |
+| **Accordion** | FAQ accordion with Framer Motion animation |
 
 ## Environment Variables
 
-See `.env.example` for all required variables. Never commit `.env.local` to version control.
+Copy `.env.example` to `.env.local`. Never commit `.env.local` to version control.
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `NEXT_PUBLIC_SITE_URL` | Production site URL | Yes |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID | No |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | reCAPTCHA v3 site key | No |
+| `RECAPTCHA_SECRET_KEY` | reCAPTCHA v3 secret key | No |
+| `RESEND_API_KEY` | Resend email API key | Yes |
+| `EMAIL_FROM` | Sender email address | Yes |
+| `EMAIL_TO` | Recipient email address | Yes |
+
+## Security
+
+- **CSP** (Content-Security-Policy) configured in `next.config.mjs`
+- **HSTS** with 2-year max-age, includeSubDomains, preload
+- **X-Frame-Options**, **X-Content-Type-Options**, **Referrer-Policy**, **Permissions-Policy**
+- **Rate limiting** on contact API (3 requests/minute/IP)
+- **reCAPTCHA v3** on contact and quote forms (gracefully skipped if keys not configured)
+- **Input sanitization** with `escapeHtml()` in email templates
+- **Zod validation** on both client and server side
 
 ## Documentation
 
+- `CLAUDE.md` — Living project reference (conventions, structure, components)
 - `SOFTWARE_SPECIFICATIONS.md` — Full project specification
 - `BEST_PRACTICES.md` — Coding standards and guidelines
 - `UX_DESIGN_BEST_PRACTICES.md` — Design system and UX guidelines
 
 ## Deployment
 
-This project is configured for deployment on [Vercel](https://vercel.com). Push to the `main` branch to trigger a production deployment.
+This project is configured for deployment on [Vercel](https://vercel.com). Push to the `master` branch to trigger a production deployment.
 
 ## License
 

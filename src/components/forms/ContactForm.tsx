@@ -13,6 +13,8 @@ import {
   type ContactFormData,
 } from '@/lib/validations';
 import { PROJECT_TYPES } from '@/lib/constants';
+import { getRecaptchaToken } from '@/lib/recaptcha-client';
+import { event as gaEvent } from '@/lib/analytics';
 
 type FormStatus = 'idle' | 'success' | 'error';
 
@@ -38,13 +40,21 @@ export function ContactForm() {
   async function onSubmit(data: ContactFormData) {
     setStatus('idle');
     try {
+      const recaptchaToken = await getRecaptchaToken('contact');
+
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, recaptchaToken }),
       });
 
       if (!res.ok) throw new Error('Failed to send message');
+
+      gaEvent({
+        action: 'contact_form_submitted',
+        category: 'engagement',
+        label: data.projectType,
+      });
 
       setStatus('success');
       reset();
