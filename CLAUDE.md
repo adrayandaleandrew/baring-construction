@@ -140,10 +140,13 @@ All in `src/components/ui/`. Import via `@/components/ui/ComponentName`.
 - **SEO:** Unique meta per page, JSON-LD structured data, sitemap, Open Graph tags
 - **Security:** Input sanitization, CSRF protection, rate limiting, secure headers (configured in next.config.mjs)
 - **Max 7 nav items**, primary CTA is always "Request Quote"
+- **Social links:** Facebook icon in Footer (Company Info column) and Contact page card, sourced from `CONTACT_INFO.facebook`
 
 ## Documentation Updates
 
-After coding changes, keep these files in sync:
+**After finishing any coding work and verifying everything works with no errors, always update `README.md` and `CLAUDE.md` to reflect the changes.**
+
+Keep these files in sync:
 
 - **`CLAUDE.md`** — Update after **structural changes**: new components, new directories, new scripts, new conventions, new dependencies. This is the primary living doc.
 - **`README.md`** — Update at the **end of each phase** or when user-facing project info changes (features, setup steps, structure).
