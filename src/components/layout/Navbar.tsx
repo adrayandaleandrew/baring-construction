@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -75,6 +76,14 @@ export function Navbar() {
               className="flex items-center gap-2 font-heading text-xl font-bold text-baring-blue-500"
               aria-label={`${SITE_CONFIG.shortName} - Home`}
             >
+              <Image
+                src="/images/logo/logo.jpg"
+                alt={`${SITE_CONFIG.shortName} logo`}
+                width={40}
+                height={40}
+                className="h-9 w-9 rounded-full lg:h-11 lg:w-11"
+                priority
+              />
               {SITE_CONFIG.shortName}
             </Link>
 

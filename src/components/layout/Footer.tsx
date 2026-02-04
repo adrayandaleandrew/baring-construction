@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Phone, Mail, Clock, MapPin } from 'lucide-react';
 import { SITE_CONFIG, CONTACT_INFO, SERVICE_AREAS } from '@/lib/constants';
 import { FOOTER_LINKS } from '@/data/navigation';
@@ -16,8 +17,15 @@ export function Footer() {
           <div>
             <Link
               href="/"
-              className="font-heading text-xl font-bold text-white"
+              className="flex items-center gap-2 font-heading text-xl font-bold text-white"
             >
+              <Image
+                src="/images/logo/logo.jpg"
+                alt={`${SITE_CONFIG.shortName} logo`}
+                width={36}
+                height={36}
+                className="h-9 w-9 rounded-full"
+              />
               {SITE_CONFIG.shortName}
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-gray-400">
