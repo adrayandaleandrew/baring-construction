@@ -10,13 +10,14 @@ Professional construction company website built with Next.js and Tailwind CSS. C
 - Contact and quote request forms with client + server Zod validation
 - reCAPTCHA v3 spam prevention on all forms
 - Google Analytics 4 with custom conversion event tracking
-- Project portfolio with category filtering and Framer Motion animations
+- Project portfolio (10 projects) with category filtering and Framer Motion animations
 - Image lightbox gallery with keyboard navigation
 - Email notifications and auto-replies via Resend API
-- Drag-and-drop file upload on quote requests
+- Drag-and-drop file upload on quote requests with Vercel Blob storage
 - Accessibility compliant (WCAG AA, semantic HTML, ARIA labels, 44px touch targets)
 - Security hardened with CSP, HSTS, Permissions-Policy, rate limiting, and input sanitization
 - Custom 404 and error boundary pages
+- 242 unit/integration tests with Vitest and Testing Library
 
 ## Tech Stack
 
@@ -29,6 +30,8 @@ Professional construction company website built with Next.js and Tailwind CSS. C
 | Forms | React Hook Form + Zod |
 | Animation | Framer Motion |
 | Email | Resend |
+| File Storage | Vercel Blob |
+| Testing | Vitest + Testing Library |
 | Deployment | Vercel |
 
 ## Getting Started
@@ -79,6 +82,9 @@ npm run start
 | `npm run type-check` | TypeScript type checking |
 | `npm run format` | Format code with Prettier |
 | `npm run format:check` | Check formatting |
+| `npm run test` | Run tests (Vitest) |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run test:coverage` | Run tests with coverage report |
 
 ## Pages
 
@@ -88,7 +94,7 @@ npm run start
 | `/about` | Company story, mission, values, capabilities, service areas |
 | `/services` | Services overview (6 services with icons and sub-service lists) |
 | `/services/[slug]` | Service detail with sub-services, FAQs, process steps, CTA |
-| `/projects` | Project portfolio with category filtering (5 categories) |
+| `/projects` | Project portfolio with category filtering (10 projects, 5 categories) |
 | `/projects/[slug]` | Project detail with gallery, specs, challenges/solutions, related projects |
 | `/contact` | Contact form, phone/email cards, service areas map |
 | `/quote` | Multi-section quote form with file upload and "What Happens Next" steps |
@@ -119,7 +125,7 @@ src/
 ├── lib/                    # Utilities, constants, validations, email, analytics, reCAPTCHA
 ├── data/                   # Static data (services, projects, testimonials, navigation)
 ├── types/                  # Shared TypeScript type definitions
-└── styles/                 # Additional styles
+└── __tests__/              # Test setup (Vitest + happy-dom)
 ```
 
 ## Design System
@@ -151,6 +157,7 @@ Copy `.env.example` to `.env.local`. Never commit `.env.local` to version contro
 | `RESEND_API_KEY` | Resend email API key | Yes |
 | `EMAIL_FROM` | Sender email address | Yes |
 | `EMAIL_TO` | Recipient email address | Yes |
+| `BLOB_READ_WRITE_TOKEN` | Vercel Blob storage token (quote file uploads) | Yes |
 
 ## Security
 

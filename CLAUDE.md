@@ -19,7 +19,10 @@ Professional construction company website built with Next.js and Tailwind CSS. C
 - **Forms:** React Hook Form + Zod validation (`@hookform/resolvers`)
 - **Animation:** Framer Motion
 - **Email:** Resend API
+- **File Storage:** Vercel Blob (`@vercel/blob`) — quote form attachments
+- **Spam Protection:** reCAPTCHA v3 (gracefully skipped if keys not configured)
 - **Utilities:** clsx
+- **Testing:** Vitest + Testing Library + happy-dom
 - **Deployment:** Vercel
 
 ## Project Structure
@@ -33,27 +36,39 @@ src/
 │   ├── about/page.tsx      # About page
 │   ├── services/page.tsx   # Services overview
 │   ├── services/[slug]/    # Service detail pages (SSG via generateStaticParams)
+│   ├── projects/page.tsx   # Projects listing with category filter
+│   ├── projects/[slug]/    # Project detail pages (SSG via generateStaticParams)
+│   ├── contact/page.tsx    # Contact page with form
+│   ├── quote/page.tsx      # Quote request form with file upload
+│   ├── privacy-policy/     # Privacy policy page
 │   ├── api/                # API routes (contact, quote)
-│   └── [page]/page.tsx    # projects, contact, quote
+│   ├── error.tsx           # Error boundary page
+│   ├── not-found.tsx       # Custom 404 page
+│   ├── sitemap.ts          # Dynamic sitemap generation
+│   └── robots.ts           # Robots.txt generation
 ├── components/
 │   ├── ui/                 # Design system primitives (see below)
-│   ├── layout/             # Navbar, Footer, MobileMenu, Container
+│   ├── layout/             # Navbar, Footer, MobileMenu, Container, Analytics
 │   ├── sections/           # Hero, ServicesGrid, FeaturedProjects, WhyChooseUs, etc.
-│   ├── forms/              # ContactForm, QuoteForm, FileUpload, FormField
-│   └── project/            # ProjectCard, ProjectFilter, ProjectGallery
+│   ├── forms/              # ContactForm, QuoteForm, FileUpload
+│   └── project/            # ProjectCard, ProjectFilter, ProjectGallery, ProjectsListing
 ├── lib/
 │   ├── utils.ts            # cn(), formatCurrency(), formatDate(), slugify(), truncate()
-│   ├── constants.ts        # SITE_CONFIG, CONTACT_INFO, PROJECT_TYPES, BUDGET_RANGES
+│   ├── constants.ts        # SITE_CONFIG, CONTACT_INFO, PROJECT_TYPES, BUDGET_RANGES, etc.
 │   ├── validations.ts      # Zod schemas: ContactFormSchema, QuoteFormSchema
-│   └── analytics.ts        # GA4 helpers: pageview(), event()
+│   ├── analytics.ts        # GA4 helpers: pageview(), event()
+│   ├── email.ts            # Resend email sending + HTML templates (escapeHtml)
+│   ├── recaptcha.ts        # Server-side reCAPTCHA v3 verification
+│   └── recaptcha-client.ts # Client-side reCAPTCHA v3 token retrieval
 ├── data/
 │   ├── navigation.ts       # NAV_ITEMS, FOOTER_LINKS
 │   ├── services.ts         # SERVICES array (6 services)
-│   ├── projects.ts         # PROJECTS array (6 projects)
+│   ├── projects.ts         # PROJECTS array (10 projects)
 │   └── testimonials.ts     # TESTIMONIALS array
 ├── types/
 │   └── index.ts            # Shared type definitions (NavItem, Service, Project, etc.)
-└── styles/
+└── __tests__/
+    └── setup.ts            # Vitest test setup (happy-dom)
 ```
 
 ## UI Components (Design System)
@@ -152,8 +167,33 @@ npm run lint         # ESLint
 npm run type-check   # TypeScript type checking (tsc --noEmit)
 npm run format       # Prettier format
 npm run format:check # Prettier check
+npm run test         # Run tests (Vitest)
+npm run test:watch   # Run tests in watch mode
+npm run test:coverage # Run tests with coverage report
 ```
+
+## Testing
+
+Test suite uses **Vitest** with **Testing Library** and **happy-dom**. Config in `vitest.config.ts`, setup in `src/__tests__/setup.ts`.
+
+Test files are co-located next to source files using the `*.test.ts(x)` convention:
+
+- **lib/** — utils, validations, email, analytics, recaptcha, recaptcha-client
+- **data/** — projects, services data integrity
+- **api/** — contact and quote route handlers
+- **components/** — Modal, Accordion, FileUpload, ProjectFilter, ProjectGallery, ProjectsListing
 
 ## Environment Variables
 
 See `.env.example` for all required variables. Never commit `.env.local`.
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `NEXT_PUBLIC_SITE_URL` | Production site URL | Yes |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID | No |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | reCAPTCHA v3 site key | No |
+| `RECAPTCHA_SECRET_KEY` | reCAPTCHA v3 secret key | No |
+| `RESEND_API_KEY` | Resend email API key | Yes |
+| `EMAIL_FROM` | Sender email address | Yes |
+| `EMAIL_TO` | Recipient email address | Yes |
+| `BLOB_READ_WRITE_TOKEN` | Vercel Blob storage token (quote file uploads) | Yes |
