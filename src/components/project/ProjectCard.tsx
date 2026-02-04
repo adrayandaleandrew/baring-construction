@@ -38,7 +38,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <MapPin className="h-3.5 w-3.5" />
             {project.location}
           </div>
-          <p className="mt-2 text-sm font-semibold text-baring-gold-600">
+          <p className="mt-2 text-sm font-semibold text-baring-gold-800">
             {project.budget}
           </p>
         </div>
