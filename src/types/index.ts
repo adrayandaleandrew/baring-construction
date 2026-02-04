@@ -131,6 +131,7 @@ export interface ContactInfo {
   email: string;
   address: string;
   businessHours: string;
+  facebook?: string;
 }
 
 export interface ServiceArea {

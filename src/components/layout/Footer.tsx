@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, Mail, Clock, MapPin } from 'lucide-react';
+import { Phone, Mail, Clock, MapPin, Facebook } from 'lucide-react';
 import { SITE_CONFIG, CONTACT_INFO, SERVICE_AREAS } from '@/lib/constants';
 import { FOOTER_LINKS } from '@/data/navigation';
 import { Container } from '@/components/layout/Container';
@@ -37,6 +37,19 @@ export function Footer() {
                 {SERVICE_AREAS.map((a) => a.region).join(' • ')}
               </span>
             </div>
+            {CONTACT_INFO.facebook && (
+              <div className="mt-4">
+                <a
+                  href={CONTACT_INFO.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit us on Facebook"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gray-800 text-gray-400 transition-colors hover:bg-gray-700 hover:text-white"
+                >
+                  <Facebook className="h-4 w-4" />
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Services */}

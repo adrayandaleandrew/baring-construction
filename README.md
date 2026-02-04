@@ -96,7 +96,7 @@ npm run start
 | `/services/[slug]` | Service detail with sub-services, FAQs, process steps, CTA |
 | `/projects` | Project portfolio with category filtering (10 projects, 5 categories) |
 | `/projects/[slug]` | Project detail with gallery, specs, challenges/solutions, related projects |
-| `/contact` | Contact form, phone/email cards, service areas map |
+| `/contact` | Contact form, phone/email/Facebook cards, service areas map |
 | `/quote` | Multi-section quote form with file upload and "What Happens Next" steps |
 | `/privacy-policy` | Privacy policy |
 

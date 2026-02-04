@@ -4,6 +4,7 @@ import {
   Mail,
   Clock,
   MapPin,
+  Facebook,
 } from 'lucide-react';
 import { Container } from '@/components/layout/Container';
 import { Card, CardBody } from '@/components/ui/Card';
@@ -114,6 +115,29 @@ export default function ContactPage() {
                   </div>
                 </CardBody>
               </Card>
+
+              {CONTACT_INFO.facebook && (
+                <Card>
+                  <CardBody className="flex items-start gap-4 p-5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-baring-blue-50">
+                      <Facebook className="h-5 w-5 text-baring-blue-500" />
+                    </div>
+                    <div>
+                      <h3 className="font-heading text-sm font-semibold text-gray-900">
+                        Facebook
+                      </h3>
+                      <a
+                        href={CONTACT_INFO.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-1 block text-sm text-gray-600 transition-colors hover:text-baring-blue-500"
+                      >
+                        Visit our Facebook page
+                      </a>
+                    </div>
+                  </CardBody>
+                </Card>
+              )}
             </div>
           </div>
         </Container>

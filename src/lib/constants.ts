@@ -18,6 +18,8 @@ export const CONTACT_INFO: ContactInfo = {
   email: 'baringcons@gmail.com',
   address: 'Coliat, Ibaan, Batangas',
   businessHours: 'Monday - Saturday: 8:00 AM - 6:00 PM',
+  facebook:
+    'https://www.facebook.com/people/Baring-Construction-Services-general-and-fit-out-contractor/61558831425159/',
 };
 
 export const SERVICE_AREAS: ServiceArea[] = [
