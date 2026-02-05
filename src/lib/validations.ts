@@ -19,6 +19,8 @@ export const ContactFormSchema = z.object({
     'Civil & Structural Works',
     'MEPF Services',
     'Renovation/Fit-out',
+    'Swimming Pool & Landscaping',
+    'Industrial Projects',
     'Other',
   ]),
   message: z

@@ -124,6 +124,8 @@ describe('ContactFormSchema', () => {
       'Civil & Structural Works',
       'MEPF Services',
       'Renovation/Fit-out',
+      'Swimming Pool & Landscaping',
+      'Industrial Projects',
       'Other',
     ];
 

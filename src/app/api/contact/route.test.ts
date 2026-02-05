@@ -4,12 +4,14 @@ const {
   mockSendContactEmail,
   mockSendAutoReply,
   mockVerifyRecaptcha,
+  mockIsRateLimited,
 } = vi.hoisted(() => ({
   mockSendContactEmail: vi.fn().mockResolvedValue({}),
   mockSendAutoReply: vi.fn().mockResolvedValue({}),
   mockVerifyRecaptcha: vi
     .fn()
     .mockResolvedValue({ valid: true, score: 0.9 }),
+  mockIsRateLimited: vi.fn().mockReturnValue(false),
 }));
 
 vi.mock('@/lib/email', () => ({
@@ -19,6 +21,10 @@ vi.mock('@/lib/email', () => ({
 
 vi.mock('@/lib/recaptcha', () => ({
   verifyRecaptcha: mockVerifyRecaptcha,
+}));
+
+vi.mock('@/lib/rate-limit', () => ({
+  isRateLimited: mockIsRateLimited,
 }));
 
 import { POST } from './route';
@@ -50,10 +56,12 @@ beforeEach(() => {
   mockSendContactEmail.mockClear();
   mockSendAutoReply.mockClear();
   mockVerifyRecaptcha.mockClear();
+  mockIsRateLimited.mockClear();
   mockVerifyRecaptcha.mockResolvedValue({
     valid: true,
     score: 0.9,
   });
+  mockIsRateLimited.mockReturnValue(false);
 });
 
 describe('POST /api/contact', () => {
@@ -113,17 +121,14 @@ describe('POST /api/contact', () => {
     expect(json.error).toContain('reCAPTCHA');
   });
 
-  // NOTE: The rate limiter stores keys as `${ip}-${timestamp}`
-  // but looks up by plain `ip`, so the guard condition
-  // `rateLimit.get(ip)` is always undefined. This means the
-  // rate limit path is unreachable. Test skipped accordingly.
-  it.skip('returns 429 when rate limited', async () => {
-    const ip = '192.168.99.1';
-    await POST(makeRequest(validBody, ip));
-    await POST(makeRequest(validBody, ip));
-    await POST(makeRequest(validBody, ip));
-    const res = await POST(makeRequest(validBody, ip));
+  it('returns 429 when rate limited', async () => {
+    mockIsRateLimited.mockReturnValue(true);
+    const res = await POST(
+      makeRequest(validBody, '192.168.99.1')
+    );
     expect(res.status).toBe(429);
+    const json = await res.json();
+    expect(json.error).toContain('Too many requests');
   });
 
   it('returns 500 when email sending fails', async () => {

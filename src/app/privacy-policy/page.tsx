@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
               Privacy Policy
             </h1>
             <p className="mt-4 text-gray-300">
-              Last updated: January 2025
+              Last updated: February 2026
             </p>
           </div>
         </Container>

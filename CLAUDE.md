@@ -58,6 +58,7 @@ src/
 │   ├── validations.ts      # Zod schemas: ContactFormSchema, QuoteFormSchema
 │   ├── analytics.ts        # GA4 helpers: pageview(), event()
 │   ├── email.ts            # Resend email sending + HTML templates (escapeHtml)
+│   ├── rate-limit.ts       # Shared rate limiting utility (isRateLimited, resetRateLimits)
 │   ├── recaptcha.ts        # Server-side reCAPTCHA v3 verification
 │   └── recaptcha-client.ts # Client-side reCAPTCHA v3 token retrieval
 ├── data/
@@ -181,7 +182,7 @@ Test suite uses **Vitest** with **Testing Library** and **happy-dom**. Config in
 
 Test files are co-located next to source files using the `*.test.ts(x)` convention:
 
-- **lib/** — utils, validations, email, analytics, recaptcha, recaptcha-client
+- **lib/** — utils, validations, email, analytics, recaptcha, recaptcha-client, rate-limit
 - **data/** — projects, services data integrity
 - **api/** — contact and quote route handlers
 - **components/** — Modal, Accordion, FileUpload, ProjectFilter, ProjectGallery, ProjectsListing, Hero, ServicesGrid, Footer, MobileMenu, Navbar, ContactForm, QuoteForm
