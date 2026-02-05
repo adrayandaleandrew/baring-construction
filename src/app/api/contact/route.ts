@@ -2,34 +2,7 @@ import { NextResponse } from 'next/server';
 import { ContactFormSchema } from '@/lib/validations';
 import { sendContactEmail, sendAutoReply } from '@/lib/email';
 import { verifyRecaptcha } from '@/lib/recaptcha';
-
-const rateLimit = new Map<string, number>();
-const RATE_LIMIT_WINDOW = 60_000; // 1 minute
-const RATE_LIMIT_MAX = 3;
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const lastRequest = rateLimit.get(ip);
-
-  // Clean old entries periodically
-  if (rateLimit.size > 1000) {
-    for (const [key, time] of rateLimit) {
-      if (now - time > RATE_LIMIT_WINDOW) {
-        rateLimit.delete(key);
-      }
-    }
-  }
-
-  if (lastRequest && now - lastRequest < RATE_LIMIT_WINDOW) {
-    const count = Array.from(rateLimit.entries()).filter(
-      ([k, t]) => k.startsWith(ip) && now - t < RATE_LIMIT_WINDOW
-    ).length;
-    if (count >= RATE_LIMIT_MAX) return true;
-  }
-
-  rateLimit.set(`${ip}-${now}`, now);
-  return false;
-}
+import { isRateLimited } from '@/lib/rate-limit';
 
 export async function POST(request: Request) {
   try {

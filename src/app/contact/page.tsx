@@ -116,6 +116,24 @@ export default function ContactPage() {
                 </CardBody>
               </Card>
 
+              {CONTACT_INFO.address && (
+                <Card>
+                  <CardBody className="flex items-start gap-4 p-5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-baring-blue-50">
+                      <MapPin className="h-5 w-5 text-baring-blue-500" />
+                    </div>
+                    <div>
+                      <h3 className="font-heading text-sm font-semibold text-gray-900">
+                        Address
+                      </h3>
+                      <p className="mt-1 text-sm text-gray-600">
+                        {CONTACT_INFO.address}
+                      </p>
+                    </div>
+                  </CardBody>
+                </Card>
+              )}
+
               {CONTACT_INFO.facebook && (
                 <Card>
                   <CardBody className="flex items-start gap-4 p-5">

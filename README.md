@@ -17,7 +17,7 @@ Professional construction company website built with Next.js and Tailwind CSS. C
 - Accessibility compliant (WCAG AA, semantic HTML, ARIA labels, 44px touch targets)
 - Security hardened with CSP, HSTS, Permissions-Policy, rate limiting, and input sanitization
 - Custom 404 and error boundary pages
-- 324 unit/integration tests with Vitest and Testing Library
+- 335 unit/integration tests with Vitest and Testing Library
 
 ## Tech Stack
 
@@ -96,7 +96,7 @@ npm run start
 | `/services/[slug]` | Service detail with sub-services, FAQs, process steps, CTA |
 | `/projects` | Project portfolio with category filtering (10 projects, 5 categories) |
 | `/projects/[slug]` | Project detail with gallery, specs, challenges/solutions, related projects |
-| `/contact` | Contact form, phone/email/Facebook cards, service areas map |
+| `/contact` | Contact form, phone/email/address/Facebook cards, service areas map |
 | `/quote` | Multi-section quote form with file upload and "What Happens Next" steps |
 | `/privacy-policy` | Privacy policy |
 
@@ -105,7 +105,7 @@ npm run start
 | Endpoint | Method | Description |
 |----------|--------|-------------|
 | `/api/contact` | POST | Contact form (Zod validation, reCAPTCHA v3, rate limiting, email + auto-reply) |
-| `/api/quote` | POST | Quote request (FormData, Zod validation, reCAPTCHA v3, file validation, email) |
+| `/api/quote` | POST | Quote request (FormData, Zod validation, reCAPTCHA v3, rate limiting, file validation, email + auto-reply) |
 
 ## Project Structure
 
@@ -164,7 +164,7 @@ Copy `.env.example` to `.env.local`. Never commit `.env.local` to version contro
 - **CSP** (Content-Security-Policy) configured in `next.config.mjs`
 - **HSTS** with 2-year max-age, includeSubDomains, preload
 - **X-Frame-Options**, **X-Content-Type-Options**, **Referrer-Policy**, **Permissions-Policy**
-- **Rate limiting** on contact API (3 requests/minute/IP)
+- **Rate limiting** on contact and quote APIs (3 requests/minute/IP)
 - **reCAPTCHA v3** on contact and quote forms (gracefully skipped if keys not configured)
 - **Input sanitization** with `escapeHtml()` in email templates
 - **Zod validation** on both client and server side

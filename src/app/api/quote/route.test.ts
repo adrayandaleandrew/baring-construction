@@ -1,22 +1,34 @@
 import { vi } from 'vitest';
 
-const { mockSendQuoteEmail, mockVerifyRecaptcha, mockPut } =
-  vi.hoisted(() => ({
-    mockSendQuoteEmail: vi.fn().mockResolvedValue({}),
-    mockVerifyRecaptcha: vi
-      .fn()
-      .mockResolvedValue({ valid: true, score: 0.9 }),
-    mockPut: vi
-      .fn()
-      .mockResolvedValue({ url: 'https://blob.example.com/file' }),
-  }));
+const {
+  mockSendQuoteEmail,
+  mockSendAutoReply,
+  mockVerifyRecaptcha,
+  mockIsRateLimited,
+  mockPut,
+} = vi.hoisted(() => ({
+  mockSendQuoteEmail: vi.fn().mockResolvedValue({}),
+  mockSendAutoReply: vi.fn().mockResolvedValue({}),
+  mockVerifyRecaptcha: vi
+    .fn()
+    .mockResolvedValue({ valid: true, score: 0.9 }),
+  mockIsRateLimited: vi.fn().mockReturnValue(false),
+  mockPut: vi
+    .fn()
+    .mockResolvedValue({ url: 'https://blob.example.com/file' }),
+}));
 
 vi.mock('@/lib/email', () => ({
   sendQuoteEmail: mockSendQuoteEmail,
+  sendAutoReply: mockSendAutoReply,
 }));
 
 vi.mock('@/lib/recaptcha', () => ({
   verifyRecaptcha: mockVerifyRecaptcha,
+}));
+
+vi.mock('@/lib/rate-limit', () => ({
+  isRateLimited: mockIsRateLimited,
 }));
 
 vi.mock('@vercel/blob', () => ({
@@ -59,21 +71,28 @@ const validFields = {
   recaptchaToken: 'valid-token',
 };
 
-function makeRequest(formData: FormData) {
+function makeRequest(
+  formData: FormData,
+  ip: string = '127.0.0.1'
+) {
   return new Request('http://localhost/api/quote', {
     method: 'POST',
+    headers: { 'x-forwarded-for': ip },
     body: formData,
   });
 }
 
 beforeEach(() => {
   mockSendQuoteEmail.mockClear();
+  mockSendAutoReply.mockClear();
   mockVerifyRecaptcha.mockClear();
+  mockIsRateLimited.mockClear();
   mockPut.mockClear();
   mockVerifyRecaptcha.mockResolvedValue({
     valid: true,
     score: 0.9,
   });
+  mockIsRateLimited.mockReturnValue(false);
 });
 
 describe('POST /api/quote', () => {
@@ -95,6 +114,24 @@ describe('POST /api/quote', () => {
         email: 'maria@example.com',
       })
     );
+  });
+
+  it('calls sendAutoReply after quote submission', async () => {
+    const fd = createFormData(validFields);
+    await POST(makeRequest(fd));
+    expect(mockSendAutoReply).toHaveBeenCalledWith(
+      'maria@example.com',
+      'Maria Santos'
+    );
+  });
+
+  it('returns 429 when rate limited', async () => {
+    mockIsRateLimited.mockReturnValue(true);
+    const fd = createFormData(validFields);
+    const res = await POST(makeRequest(fd, '192.168.1.1'));
+    expect(res.status).toBe(429);
+    const json = await res.json();
+    expect(json.error).toContain('Too many requests');
   });
 
   it('returns 200 with valid files', async () => {

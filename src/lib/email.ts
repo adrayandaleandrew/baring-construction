@@ -10,9 +10,9 @@ function getResend(): Resend {
 }
 
 const FROM_EMAIL =
-  process.env.FROM_EMAIL || 'noreply@baringconstruction.ph';
+  process.env.EMAIL_FROM || 'noreply@baringconstruction.ph';
 const TO_EMAIL =
-  process.env.CONTACT_EMAIL || 'baringcons@gmail.com';
+  process.env.EMAIL_TO || 'baringcons@gmail.com';
 
 function escapeHtml(str: string): string {
   return str

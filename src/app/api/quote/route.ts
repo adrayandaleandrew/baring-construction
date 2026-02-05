@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
 import { put } from '@vercel/blob';
 import { QuoteFormSchema } from '@/lib/validations';
-import { sendQuoteEmail } from '@/lib/email';
+import { sendQuoteEmail, sendAutoReply } from '@/lib/email';
 import { verifyRecaptcha } from '@/lib/recaptcha';
+import { isRateLimited } from '@/lib/rate-limit';
 import {
   MAX_FILE_SIZE,
   ALLOWED_FILE_TYPES,
@@ -11,6 +12,17 @@ import {
 
 export async function POST(request: Request) {
   try {
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0] ??
+      'unknown';
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
     const formData = await request.formData();
 
     // Verify reCAPTCHA token
@@ -108,6 +120,7 @@ export async function POST(request: Request) {
       fileNames,
       fileLinks: fileLinks.length > 0 ? fileLinks : undefined,
     });
+    await sendAutoReply(result.data.email, result.data.name);
 
     return NextResponse.json({
       success: true,
