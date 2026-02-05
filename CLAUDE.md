@@ -184,7 +184,7 @@ Test files are co-located next to source files using the `*.test.ts(x)` conventi
 - **lib/** — utils, validations, email, analytics, recaptcha, recaptcha-client
 - **data/** — projects, services data integrity
 - **api/** — contact and quote route handlers
-- **components/** — Modal, Accordion, FileUpload, ProjectFilter, ProjectGallery, ProjectsListing
+- **components/** — Modal, Accordion, FileUpload, ProjectFilter, ProjectGallery, ProjectsListing, Hero, ServicesGrid, Footer, MobileMenu, Navbar, ContactForm, QuoteForm
 
 ## Environment Variables
 
