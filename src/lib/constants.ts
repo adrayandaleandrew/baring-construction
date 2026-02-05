@@ -85,10 +85,10 @@ export const PROJECT_CATEGORIES: ProjectCategoryFilter[] = [
 ];
 
 export const GOOGLE_MAPS_EMBED_URL: string =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15467.88!2d121.133!3d13.817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd0e1b1b1b1b1b%3A0x1234567890abcdef!2sColiat%2C%20Ibaan%2C%20Batangas!5e0!3m2!1sen!2sph!4v1700000000000';
+  'https://www.google.com/maps?q=13.813583,121.128361&z=17&output=embed';
 
 export const GOOGLE_MAPS_DIRECTIONS_URL: string =
-  'https://www.google.com/maps/dir/?api=1&destination=Coliat,+Ibaan,+Batangas,+Philippines';
+  'https://www.google.com/maps/dir/?api=1&destination=13.813583,121.128361';
 
 export const MAX_FILE_SIZE: number = 5 * 1024 * 1024; // 5MB
 export const ALLOWED_FILE_TYPES: string[] = [
