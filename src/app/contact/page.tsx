@@ -5,6 +5,7 @@ import {
   Clock,
   MapPin,
   Facebook,
+  ExternalLink,
 } from 'lucide-react';
 import { Container } from '@/components/layout/Container';
 import { Card, CardBody } from '@/components/ui/Card';
@@ -13,6 +14,8 @@ import { ContactForm } from '@/components/forms/ContactForm';
 import {
   CONTACT_INFO,
   SERVICE_AREAS,
+  GOOGLE_MAPS_EMBED_URL,
+  GOOGLE_MAPS_DIRECTIONS_URL,
 } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -172,6 +175,32 @@ export default function ContactPage() {
               We serve projects across these regions.
             </p>
           </div>
+          {CONTACT_INFO.address && (
+            <div className="mt-10">
+              <div className="overflow-hidden rounded-xl">
+                <iframe
+                  src={GOOGLE_MAPS_EMBED_URL}
+                  width="100%"
+                  height="400"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`Map showing ${CONTACT_INFO.address}`}
+                />
+              </div>
+              <a
+                href={GOOGLE_MAPS_DIRECTIONS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-baring-blue-500 transition-colors hover:text-baring-blue-700"
+              >
+                Get Directions
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
+          )}
+
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {SERVICE_AREAS.map((area) => (
               <Card key={area.region}>

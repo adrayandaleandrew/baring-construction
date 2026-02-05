@@ -38,7 +38,7 @@ src/
 │   ├── services/[slug]/    # Service detail pages (SSG via generateStaticParams)
 │   ├── projects/page.tsx   # Projects listing with category filter
 │   ├── projects/[slug]/    # Project detail pages (SSG via generateStaticParams)
-│   ├── contact/page.tsx    # Contact page with form
+│   ├── contact/page.tsx    # Contact page with form + Google Maps embed
 │   ├── quote/page.tsx      # Quote request form with file upload
 │   ├── privacy-policy/     # Privacy policy page
 │   ├── api/                # API routes (contact, quote)
@@ -54,7 +54,7 @@ src/
 │   └── project/            # ProjectCard, ProjectFilter, ProjectGallery, ProjectsListing
 ├── lib/
 │   ├── utils.ts            # cn(), formatCurrency(), formatDate(), slugify(), truncate()
-│   ├── constants.ts        # SITE_CONFIG, CONTACT_INFO, PROJECT_TYPES, BUDGET_RANGES, etc.
+│   ├── constants.ts        # SITE_CONFIG, CONTACT_INFO, PROJECT_TYPES, BUDGET_RANGES, GOOGLE_MAPS_*, etc.
 │   ├── validations.ts      # Zod schemas: ContactFormSchema, QuoteFormSchema
 │   ├── analytics.ts        # GA4 helpers: pageview(), event()
 │   ├── email.ts            # Resend email sending + HTML templates (escapeHtml)
