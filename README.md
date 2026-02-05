@@ -17,7 +17,7 @@ Professional construction company website built with Next.js and Tailwind CSS. C
 - Accessibility compliant (WCAG AA, semantic HTML, ARIA labels, 44px touch targets)
 - Security hardened with CSP, HSTS, Permissions-Policy, rate limiting, and input sanitization
 - Custom 404 and error boundary pages
-- 242 unit/integration tests with Vitest and Testing Library
+- 324 unit/integration tests with Vitest and Testing Library
 
 ## Tech Stack
 
